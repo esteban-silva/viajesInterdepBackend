@@ -6,26 +6,36 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Controller
+@RequestMapping("/")
 public class DepartamentoController {
 
     @Autowired
-    DepartamentoService departamentoService;
+   private final DepartamentoService departamentoService;
 
-    @GetMapping("/departamentos")
-    public ResponseEntity<List<Departamento>> getDepartamento() {
-        return ResponseEntity.status(HttpStatus.OK).body(departamentoService.findAll());
+    public DepartamentoController(DepartamentoService departamentoService) {
+        this.departamentoService = departamentoService;
     }
 
-    @PostMapping("/departamentos")
-    public ResponseEntity<Departamento> postDepartamento(@RequestBody Departamento depto) throws NotFoundException {
-        return ResponseEntity.status(HttpStatus.CREATED).body(departamentoService.crearDepartamento(depto));
+    @RequestMapping(value="/listar" , method= RequestMethod.GET)
+    public ResponseEntity<List<Departamento>> listaDepartamentos() { // Para futuro uso ---> @PathVariable("id") Long id donde @GetMapping("/{id}"
+        List<Departamento> listaDepartamentos = departamentoService.findAll();
+        return new ResponseEntity<>(listaDepartamentos, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/crear",method= RequestMethod.POST)
+    public ResponseEntity<Departamento> crearDepartamento(@RequestBody Departamento depto) throws NotFoundException {
+        Departamento newDepartamento = departamentoService.crearDepartamento(depto);
+        return new ResponseEntity<>(newDepartamento, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value="/{id}", method=RequestMethod.POST)
+    public void borrarDepartamento(@PathVariable("id") Long id){
+        departamentoService.borrarDepartamento(id);
     }
 }

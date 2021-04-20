@@ -6,10 +6,8 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
-@Transactional
 @Service
 public class DepartamentoService {
     @Autowired DepartamentoRepository departamentoRepository;
@@ -22,8 +20,11 @@ public class DepartamentoService {
         return departamentoRepository.save(depto);
     }
 
-
     public List<Departamento> findAll(){
        return (List<Departamento>) departamentoRepository.findAll();
+    }
+
+    public void borrarDepartamento(Long id){
+        departamentoRepository.deleteById(id);
     }
 }

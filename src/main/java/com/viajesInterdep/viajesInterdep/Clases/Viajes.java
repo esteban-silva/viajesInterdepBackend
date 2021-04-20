@@ -1,7 +1,5 @@
 package com.viajesInterdep.viajesInterdep.Clases;
-import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
-import javax.annotation.processing.Generated;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 

@@ -2,10 +2,9 @@ package com.viajesInterdep.viajesInterdep;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan({ "Controller", "Service", "Repository" })
+//@ComponentScan(basePackages = {"Controller", "Service", "Repository", "Clases"})
 public class ViajesInterdepApplication {
 
 	public static void main(String[] args) {
