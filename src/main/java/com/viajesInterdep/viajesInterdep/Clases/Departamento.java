@@ -19,6 +19,9 @@ public class Departamento {
     private Long id;
     private String departamentoNombre;
 
+    public Long getId() {
+        return id;
+    }
 
     public void setDepartamentoNombre(String departamentoNombre) {
         this.departamentoNombre = departamentoNombre;

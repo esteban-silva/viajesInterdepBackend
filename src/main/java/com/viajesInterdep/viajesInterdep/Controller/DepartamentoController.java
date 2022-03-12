@@ -6,12 +6,12 @@ import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@CrossOrigin("*")
+@RestController
 @RequestMapping("/")
 public class DepartamentoController {
 
@@ -22,19 +22,19 @@ public class DepartamentoController {
         this.departamentoService = departamentoService;
     }
 
-    @RequestMapping(value="/listar" , method= RequestMethod.GET)
+    @GetMapping(value="/listar")
     public ResponseEntity<List<Departamento>> listaDepartamentos() { // Para futuro uso ---> @PathVariable("id") Long id donde @GetMapping("/{id}"
         List<Departamento> listaDepartamentos = departamentoService.findAll();
         return new ResponseEntity<>(listaDepartamentos, HttpStatus.OK);
     }
 
-    @RequestMapping(value="/crear",method= RequestMethod.POST)
+    @PostMapping(value="/crear")
     public ResponseEntity<Departamento> crearDepartamento(@RequestBody Departamento depto) throws NotFoundException {
         Departamento newDepartamento = departamentoService.crearDepartamento(depto);
         return new ResponseEntity<>(newDepartamento, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/{id}", method=RequestMethod.POST)
+    @DeleteMapping(value="/{id}")
     public void borrarDepartamento(@PathVariable("id") Long id){
         departamentoService.borrarDepartamento(id);
     }
