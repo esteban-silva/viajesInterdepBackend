@@ -16,10 +16,16 @@ public class DepartamentoService {
     @Autowired DepartamentoRepository departamentoRepository;
 
 
-    public Departamento crearDepartamento(Departamento depto) throws NotFoundException {
-        if (depto.getDepartamentoNombre().isEmpty()) {
+    public Departamento crearDepartamento(String deptoNombre) throws NotFoundException {
+        Departamento depto;
+
+        if (deptoNombre.isEmpty()) {
             throw new NotFoundException("No puede agregar un departamento sin nombre");
+        } else{
+            depto = new Departamento();
+            depto.setDepartamentoNombre(deptoNombre);
         }
+
 
         return departamentoRepository.save(depto);
     }

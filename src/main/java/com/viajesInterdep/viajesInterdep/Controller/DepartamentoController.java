@@ -29,9 +29,9 @@ public class DepartamentoController {
     }
 
     @PostMapping(value="/crear")
-    public ResponseEntity<Departamento> crearDepartamento(@RequestBody Departamento depto) throws NotFoundException {
-        Departamento newDepartamento = departamentoService.crearDepartamento(depto);
-        return new ResponseEntity<>(newDepartamento, HttpStatus.CREATED);
+    public ResponseEntity<Departamento> crearDepartamento(@RequestBody String deptoNombre) throws NotFoundException {
+        Departamento departamento = departamentoService.crearDepartamento(deptoNombre);
+        return new ResponseEntity<>(departamento, HttpStatus.CREATED);
     }
 
     @DeleteMapping(value="/{id}")
