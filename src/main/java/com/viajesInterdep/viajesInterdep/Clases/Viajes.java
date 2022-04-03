@@ -1,7 +1,7 @@
 package com.viajesInterdep.viajesInterdep.Clases;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
+import java.sql.Time;
 
 @Entity
 @Table(name = "Viajes")
@@ -11,85 +11,76 @@ public class Viajes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(unique = true, nullable = false)
     private Long viajeId;
-    private LocalDateTime fecha;
-    private String departamento;
-    private String ciudad;
-    private String parada;
+    private String partida;
+    private String destino;
+    private Long asientosTotales;
+    private Short diaSemana;
+    private Time hora;
 
-    public Viajes(Long viajeId, LocalDateTime fecha, String departamento, String ciudad, String parada, Long asiento, Long cedula) {
-        this.viajeId = viajeId;
-        this.fecha = fecha;
-        this.departamento = departamento;
-        this.ciudad = ciudad;
-        this.parada = parada;
-        this.asiento = asiento;
-        this.cedula = cedula;
+    public void setPartida(String partida) {
+        this.partida = partida;
     }
 
-    public Viajes(){
-
-    }
-    private Long asiento;
-    private Long cedula;
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
+    public Viajes(String partida, String destino, Long asientosTotales, Short diaSemana, Time hora) {
+        this.partida = partida;
+        this.destino = destino;
+        this.asientosTotales = asientosTotales;
+        this.diaSemana = diaSemana;
+        this.hora = hora;
     }
 
-    public void setDepartamento(String departamento) {
-        this.departamento = departamento;
-    }
+    public Viajes(){};
 
     @Override
     public String toString() {
         return "Viajes{" +
-                "fecha:" + fecha +
-                ", departamento:'" + departamento + '\'' +
-                ", ciudad:'" + ciudad + '\'' +
-                ", parada:'" + parada + '\'' +
-                ", asiento:'" + asiento + '\'' +
-                ", cedula:" + cedula +
+                "partida='" + partida + '\'' +
+                ", destino='" + destino + '\'' +
+                ", asientosTotales=" + asientosTotales +
+                ", diaSemana=" + diaSemana +
+                ", hora=" + hora +
                 '}';
     }
 
-    public LocalDateTime getFecha() {
-        return fecha;
+    public void setDestino(String destino) {
+        this.destino = destino;
     }
 
-    public String getDepartamento() {
-        return departamento;
+    public void setAsientosTotales(Long asientosTotales) {
+        this.asientosTotales = asientosTotales;
     }
 
-    public String getCiudad() {
-        return ciudad;
+    public void setDiaSemana(Short diaSemana) {
+        this.diaSemana = diaSemana;
     }
 
-    public String getParada() {
-        return parada;
+    public void setHora(Time hora) {
+        this.hora = hora;
     }
 
-    public Long getAsiento() {
-        return asiento;
+    public String getPartida() {
+        return partida;
     }
 
-    public Long getCedula() {
-        return cedula;
+    public String getDestino() {
+        return destino;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public Long getAsientosTotales() {
+        return asientosTotales;
     }
 
-    public void setParada(String parada) {
-        this.parada = parada;
+    public Short getDiaSemana() {
+        return diaSemana;
     }
 
-    public void setAsiento(Long asiento) {
-        this.asiento = asiento;
+    public Time getHora() {
+        return hora;
     }
 
-    public void setCedula(Long cedula) {
-        this.cedula = cedula;
-    }
+
+
+
+
 
 }

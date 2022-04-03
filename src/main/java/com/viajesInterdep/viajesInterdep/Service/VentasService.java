@@ -1,7 +1,7 @@
 package com.viajesInterdep.viajesInterdep.Service;
 
-import com.viajesInterdep.viajesInterdep.Clases.Viajes;
-import com.viajesInterdep.viajesInterdep.Repository.ViajeRepository;
+import com.viajesInterdep.viajesInterdep.Clases.Ventas;
+import com.viajesInterdep.viajesInterdep.Repository.VentasRepository;
 import javassist.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,29 +13,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import java.util.List;
 
 @Service
-public class ViajeService {
+public class VentasService {
 
     @Autowired
-    ViajeRepository viajeRepository;
+    VentasRepository ventasRepository;
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
-    public String crearViaje(Viajes viaje) throws NotFoundException {
+    public String crearVenta(Ventas venta) throws NotFoundException {
         try{
-            viajeRepository.save(viaje);
-            return "Viaje creado correctamente";
+            ventasRepository.save(venta);
+            return "Venta creado correctamente";
         }catch (Exception e ){
-            return e + " . El viaje no pudo ser creado";
+            return e + " . La Venta no pudo ser creado";
         }
 
     }
 
     @GetMapping
-    public List<Viajes> listarViajes(){
-       return (List<Viajes>)viajeRepository.findAll();
+    public List<Ventas> listarVentas(){
+       return (List<Ventas>)ventasRepository.findAll();
     }
 
     @DeleteMapping
-    public void borrarViaje(Long id){
-        viajeRepository.deleteById(id);
+    public void borrarVenta(Long id){
+        ventasRepository.deleteById(id);
     }
 }

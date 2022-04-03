@@ -1,0 +1,18 @@
+{
+  "viajes": [
+    {
+      "partida":"Florida",
+      "destino":"Montevideo",
+      "asientosTotales":45,
+      "diaSemana":1,
+      "hora":"15:00:00"
+    },
+    {
+      "partida":"Montevideo",
+      "destino":"Florida",
+      "asientosTotales":45,
+      "diaSemana":1,
+      "hora":"17:15:00"
+    }
+  ]
+}
